@@ -27,6 +27,6 @@ app.use('/images',express.static('userimages'));
 require('./routes/api-uploads.js')(app,formidable,fs,path);
 
 // Route for checking user credentials
-require('./routes/api-login.js')(app,path);
+require('./routes/api-login.js')(app,path,fs);
 // Start the server listening on port 3000. Output message to console once server has started.(diagnostic only)
 require('./listen.js')(http,PORT);
