@@ -16,10 +16,12 @@ module.exports = function(app,formidable,fs,path){
                  for(let i=0;i<users.people.length;i++){
                     
                      if(users.people[i].id == data.user.id){
-                       
+                       //find the user you are wanting to update and grab their password and save it to the new user.
                         data.user.pwd = users.people[i].pwd;
+                        //remove the old user record
                         users.people.splice(i,1);
-                        users.people.push(data.user);
+                        //add a new record for hat user to the beginning of the array.
+                        users.people.unshift(data.user);
                      }
                 
                     
