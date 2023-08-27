@@ -20,14 +20,24 @@ app.use('/images',express.static('userimages'));
 // app.use(express.static(path.join(__dirname, '../dist/week5tut/'))); // Serve
 // static content for the app from the “public”
 
-// Target the build version of the angular app
-// created in the "dist" directory:
-
+//Require socket.io
+const io = require('socket.io')(http,{
+    cors:{
+        origin:"http://localhost:4200",
+        methods:["GET","POST"],
+    }
+});
+const sockets = require('./socket.js');
 //Route for uploading images.
 require('./routes/api-uploads.js')(app,formidable,fs,path);
+
+//route for updating user profile information
 require('./routes/api-update-users.js')(app,formidable,fs,path);
 
 // Route for checking user credentials
 require('./routes/api-login.js')(app,path,fs);
+
+
 // Start the server listening on port 3000. Output message to console once server has started.(diagnostic only)
 require('./listen.js')(http,PORT);
+sockets.connect(io, PORT);
