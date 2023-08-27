@@ -1,5 +1,5 @@
 require('dotenv').config()
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const express = require('express');  // Import express.js
 const app = express();  // The app object conventionally denotes the Express application. Create it by
                         // calling the top-level express() function exported by the Express module.
@@ -25,6 +25,7 @@ app.use('/images',express.static('userimages'));
 
 //Route for uploading images.
 require('./routes/api-uploads.js')(app,formidable,fs,path);
+require('./routes/api-update-users.js')(app,formidable,fs,path);
 
 // Route for checking user credentials
 require('./routes/api-login.js')(app,path,fs);

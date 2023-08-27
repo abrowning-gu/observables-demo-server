@@ -1,5 +1,1 @@
-{"people":[
-    { "email": "abc@com.au", "pwd": "123", "id": 1, "username": "allan" },
-    { "email": "abd@com.au", "pwd": "123", "id": 2, "username": "Jodi" },
-    { "email": "abe@com.au", "pwd": "123", "id": 3, "username": "Sarah" }]
-}
+{"people":[{"email":"abd@com.au","pwd":"123","id":2,"username":"Jodi","avatar":""},{"email":"abe@com.au","pwd":"123","id":3,"username":"Sarah","avatar":""},{"username":"allan","email":"abc@com.au","pwd":"123","avatar":"allan-gravatar.jpg","id":1}]}

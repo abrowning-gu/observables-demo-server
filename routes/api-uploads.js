@@ -11,7 +11,7 @@ module.exports = function(app,formidable,fs,path){
       }
       var form = new formidable.IncomingForm(options);
       form.parse(req, async (err, fields, files)=> {
-        console.log(files.image[0].filepath);
+        //console.log(files.image[0].filepath);
         //assuming a single file for this example.
         let oldpath = files.image[0].filepath;
        
