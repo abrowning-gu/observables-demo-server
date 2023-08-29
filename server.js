@@ -28,15 +28,17 @@ const io = require('socket.io')(http,{
     }
 });
 const sockets = require('./socket.js');
-//Route for uploading images.
+//POST Route for uploading images.
 require('./routes/api-uploads.js')(app,formidable,fs,path);
 
-//route for updating user profile information
+//POST route for updating user profile information
 require('./routes/api-update-users.js')(app,formidable,fs,path);
 
-// Route for checking user credentials
+// POST Route for checking user credentials
 require('./routes/api-login.js')(app,path,fs);
 
+// GET Route for getting all car data
+require('./routes/api-data-cars.js')(app,fs);
 
 // Start the server listening on port 3000. Output message to console once server has started.(diagnostic only)
 require('./listen.js')(http,PORT);
