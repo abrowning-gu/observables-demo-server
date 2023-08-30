@@ -1,5 +1,5 @@
 require('dotenv').config()
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const express = require('express');  // Import express.js
 const app = express();  // The app object conventionally denotes the Express application. Create it by
                         // calling the top-level express() function exported by the Express module.
@@ -20,13 +20,26 @@ app.use('/images',express.static('userimages'));
 // app.use(express.static(path.join(__dirname, '../dist/week5tut/'))); // Serve
 // static content for the app from the “public”
 
-// Target the build version of the angular app
-// created in the "dist" directory:
-
-//Route for uploading images.
+//Require socket.io
+const io = require('socket.io')(http,{
+    cors:{
+        origin:"http://localhost:4200",
+        methods:["GET","POST"],
+    }
+});
+const sockets = require('./socket.js');
+//POST Route for uploading images.
 require('./routes/api-uploads.js')(app,formidable,fs,path);
 
-// Route for checking user credentials
+//POST route for updating user profile information
+require('./routes/api-update-users.js')(app,formidable,fs,path);
+
+// POST Route for checking user credentials
 require('./routes/api-login.js')(app,path,fs);
+
+// GET Route for getting all car data
+require('./routes/api-data-cars.js')(app,fs);
+
 // Start the server listening on port 3000. Output message to console once server has started.(diagnostic only)
 require('./listen.js')(http,PORT);
+sockets.connect(io, PORT);

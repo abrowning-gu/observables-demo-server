@@ -12,37 +12,42 @@ module.exports = function (app,path,fs) {
               return
             }
             try{
-                console.log(data);
+                //console.log(data);
               let users = JSON.parse(data);
+              //console.log(users);
               users = users.people;
-              console.log(users);
+              
               
     
             var customer = {};
     
-            customer.valid = false;
+            
+            customer.id=0;
             customer.email = '';
             customer.username = '';
     
             for (let i = 0; i < users.length; i++) {
                 if (req.body.email == users[i].email && req.body.upwd == users[i].pwd) {
-                    customer.valid = true;
+                    
+                    customer.id = users[i].id;
                     customer.email = users[i].email;
                     customer.username = users[i].username;
+                    customer.avatar = users[i].avatar;
+                    customer.pwd = "";
     
                 }
             }
             res.send(customer);
             
             }catch(err){
-              console.log("Error pasing the userdata");
+              console.log("Error parsing the userdata at login");
             }
               
            })
-        // let users = [
-        //     { 'email': 'abc@com.au', 'pwd': '123', 'id': 1, 'username': 'allan' },
-        //     { 'email': 'abd@com.au', 'pwd': '123', 'id': 2, 'username': 'Jodi' },
-        //     { 'email': 'abe@com.au', 'pwd': '123', 'id': 3, 'username': 'Sarah' }]
+          //  {"people": [
+          //   { "email": "abc@com.au", "pwd": "123", "id": 1, "username": "allan","avatar":"" },
+          //   { "email": "abd@com.au", "pwd": "123", "id": 2, "username": "Jodi" ,"avatar":""},
+          //  { "email": "abe@com.au", "pwd": "123", "id": 3, "username": "Sarah" ,"avatar":""}]}
 
        
 
