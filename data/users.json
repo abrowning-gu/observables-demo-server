@@ -1,1 +1,5 @@
-[{"username":"allan","email":"abc@com.au","pwd":"123","avatar":"allan-gravatar.jpg","id":1},{"email":"abd@com.au","pwd":"123","id":2,"username":"Jodi","avatar":""},{"email":"abe@com.au","pwd":"123","id":3,"username":"Sarah","avatar":""}]
+{"people":[
+    { "email": "abc@com.au", "pwd": "123", "id": 1, "username": "allan" ,"avatar":"allan-gravatar.jpg"},
+    { "email": "abd@com.au", "pwd": "123", "id": 2, "username": "Jodi" ,"avatar":""},
+    { "email": "abe@com.au", "pwd": "123", "id": 3, "username": "Sarah" ,"avatar":""}]
+}
