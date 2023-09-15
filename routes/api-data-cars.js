@@ -1,22 +1,12 @@
-module.exports = function (app,fs) {
+module.exports = async function (app,db) {
     //Route to manage user logins
 
 
-    app.get('/api/cars', function (req, res) {
-        
-        fs.readFile('data/cars.json','utf8',(err,data)=>{
-            if (err) {
-              console.error(err)
-              return
-            }
-            try{
-              
-              res.send(JSON.stringify(data));
-            
-            }catch(err){
-              console.log("Error getting list of cars");
-            }
-              
-           })
-    });
+    app.get('/api/cars', async function (req, res) {
+       
+      let cars = await db.collection("cars").find({}).toArray();
+        res.send(JSON.stringify(cars));
+        return true;
+    })
+    
 }

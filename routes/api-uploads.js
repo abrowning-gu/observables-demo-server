@@ -11,8 +11,9 @@ module.exports = function(app,formidable,fs,path){
       }
       var form = new formidable.IncomingForm(options);
       form.parse(req, async (err, fields, files)=> {
-        //console.log(files.image[0].filepath);
+        
         //assuming a single file for this example.
+        //should check for duplicates.
         let oldpath = files.image[0].filepath;
        
         
@@ -20,10 +21,10 @@ module.exports = function(app,formidable,fs,path){
         fs.rename(oldpath, newpath, function (err) {
           //if an error occurs send message to client
           if (err) {
-            console.log("Error parsing the files");
+            console.log("Error parsing the files. There may be a duplicate");
             return res.status(400).json({
               status: "Fail",
-              message: "There was an error parsing the files",
+              message: "There was an error parsing the files. Possible duplicate filename",
               error: err,
             });
           }
