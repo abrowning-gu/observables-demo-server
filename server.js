@@ -29,8 +29,7 @@ const sockets = require('./socket.js');
 sockets.connect(io, PORT);
 //mongo connection strin g to mongo atlas database
 const uri = "mongodb://127.0.0.1:27017";
-//const uri = "mongodb+srv://abrowning:djiynh3m2qXvE6gk@cluster0.5lfjecv.mongodb.net/?retryWrites=true&w=majority";
-//const uri = "mongodb+srv://abrowning:djiynh3m2qXvE6gk@cluster0.zjcxt.mongodb.net/?retryWrites=true&w=majority";
+
 const client = new MongoClient(uri);
 async function main() {
 	
