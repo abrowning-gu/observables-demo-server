@@ -17,7 +17,7 @@ app.use (express.json());   // Mounts the specified middleware function at the
                             // requested path matches path. In this case we are using middleware to parse
                             // JSON data
 
-app.use('/images',express.static('userimages'));
+app.use('/images',express.static(path.join(__dirname, 'userimages')));
 //Require socket.io
 const io = require('socket.io')(http,{
     cors:{
@@ -29,7 +29,8 @@ const sockets = require('./socket.js');
 sockets.connect(io, PORT);
 //mongo connection strin g to mongo atlas database
 const uri = "mongodb://127.0.0.1:27017";
-//const uri = "mongodb+srv://abrowning:<add your password>>@cluster0.5lfjecv.mongodb.net/?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://abrowning:djiynh3m2qXvE6gk@cluster0.5lfjecv.mongodb.net/?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://abrowning:djiynh3m2qXvE6gk@cluster0.zjcxt.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 async function main() {
 	

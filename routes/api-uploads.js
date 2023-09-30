@@ -3,6 +3,7 @@ module.exports = function(app,formidable,fs,path){
     
     app.post('/api/upload', (req, res) => {
       const uploadFolder = path.join(__dirname, "../userimages");
+      
       let options={
         keepExtensions : true,
         uploadDir:uploadFolder,
@@ -15,13 +16,12 @@ module.exports = function(app,formidable,fs,path){
         //assuming a single file for this example.
         //should check for duplicates.
         let oldpath = files.image[0].filepath;
-       
-        
         let newpath = form.options.uploadDir + "/" + files.image[0].originalFilename;
+        
         fs.rename(oldpath, newpath, function (err) {
           //if an error occurs send message to client
           if (err) {
-            console.log("Error parsing the files. There may be a duplicate");
+            console.log("Error parsing the files. There may be a duplicate",err);
             return res.status(400).json({
               status: "Fail",
               message: "There was an error parsing the files. Possible duplicate filename",
