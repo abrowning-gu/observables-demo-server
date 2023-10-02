@@ -1,5 +1,7 @@
 require('dotenv').config()
 const PORT = process.env.PORT || 3000;
+const ANGULAR_URL = process.env.ANGULAR_URL || "http://localhost:4200";
+const MONDODB_URL = process.env.MONDODB_URL || "mongodb://127.0.0.1:27017";
 const express = require('express');  // Import express.js
 const {MongoClient} = require('mongodb');
 const app = express();  // The app object conventionally denotes the Express application. Create it by
@@ -21,14 +23,14 @@ app.use('/images',express.static(path.join(__dirname, 'userimages')));
 //Require socket.io
 const io = require('socket.io')(http,{
     cors:{
-     origin:"http://localhost:4200",
+     origin: ANGULAR_URL,
         methods:["GET","POST"],
     }
 });
 const sockets = require('./socket.js');
 sockets.connect(io, PORT);
-//mongo connection strin g to mongo atlas database
-const uri = "mongodb://127.0.0.1:27017";
+//mongo connection string to mongo atlas database
+const uri = MONDODB_URL;
 
 const client = new MongoClient(uri);
 async function main() {
